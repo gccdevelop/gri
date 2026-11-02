@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* ---------- Design tokens ---------- */
+@theme {
+  /* Deep forest green */
+  --color-forest-950: #0e261d;
+  --color-forest-900: #143528;
+  --color-forest-800: #1b4535;
+  --color-forest-700: #255a45;
+  --color-forest-600: #2f7058;
+  --color-forest-100: #dce9e2;
+
+  /* Warm ivory */
+  --color-ivory-50: #fcfaf4;
+  --color-ivory-100: #f6f0e3;
+  --color-ivory-200: #ece3ce;
+  --color-ivory-300: #ddd0b3;
+
+  /* Ochre */
+  --color-ochre-300: #e6bc63;
+  --color-ochre-400: #d49e33;
+  --color-ochre-500: #b98219;
+  --color-ochre-700: #7f5509;
+
+  /* Terracotta */
+  --color-terracotta-300: #e39a7d;
+  --color-terracotta-500: #b9532f;
+  --color-terracotta-600: #9c4222;
+
+  --color-ink: #18221d;
+  --color-ink-soft: #43514a;
+
+  --font-serif: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "Figtree Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --breakpoint-xs: 30rem;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-ivory-50);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--color-ochre-300);
+  color: var(--color-forest-950);
+}
+
+/* Visible keyboard focus that reads on both ivory and forest backgrounds */
+:focus-visible {
+  outline: 3px solid var(--color-ochre-300);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-forest-950);
+  border-radius: 2px;
+}
+
+[id] {
+  scroll-margin-top: 6.5rem;
+}
+
+/* ---------- Type scale ---------- */
+.display {
+  font-size: clamp(2.75rem, 7.2vw, 5.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+.title-xl {
+  font-size: clamp(2.5rem, 5.4vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+}
+.title-lg {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+}
+.title-md {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  line-height: 1.18;
+}
+.lead {
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  line-height: 1.55;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.italic-accent {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ---------- Motion (only when the visitor allows it) ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .rise-2 {
+    animation-delay: 0.12s;
+  }
+  .rise-3 {
+    animation-delay: 0.24s;
+  }
+  .turn-slow {
+    transform-origin: 50% 50%;
+    animation: turn 140s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+}
